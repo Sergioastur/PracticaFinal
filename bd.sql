@@ -4,7 +4,7 @@ CREATE TABLE USUARIO
   fecha_nacimiento DATE NOT NULL,
   nombre VARCHAR(25) NOT NULL,
   apellidos VARCHAR(25) NOT NULL,
-  usuario VARCHAR(25) NOT NULL,
+  usuario VARCHAR(25) NOT NULL UNIQUE,
   contra VARCHAR(25) NOT NULL,
   PRIMARY KEY (id_usu)
 );
@@ -21,7 +21,7 @@ CREATE TABLE CONTROL_GLUCOSA
 
 CREATE TABLE COMIDA
 (
-  tipo_comida VARCHAR(30) NOT NULL,
+  tipo_comida ENUM('desayuno','comida','merienda','cena','aperitivo') NOT NULL,
   gl_1h INT NOT NULL,
   gl_2h INT NOT NULL,
   raciones INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE HIPERGLUCEMIA
   glucosa INT NOT NULL,
   hora TIME NOT NULL,
   correccion INT NOT NULL,
-  tipo_comida VARCHAR(30) NOT NULL,
+  tipo_comida ENUM('desayuno','comida','merienda','cena','aperitivo') NOT NULL,
   fecha DATE NOT NULL,
   id_usu INT NOT NULL,
   PRIMARY KEY (tipo_comida, fecha, id_usu),
@@ -48,7 +48,7 @@ CREATE TABLE HIPOGLUCEMIA
 (
   glucosa INT NOT NULL,
   hora TIME NOT NULL,
-  tipo_comida VARCHAR(30) NOT NULL,
+  tipo_comida ENUM('desayuno','comida','merienda','cena','aperitivo') NOT NULL,
   fecha DATE NOT NULL,
   id_usu INT NOT NULL,
   PRIMARY KEY (tipo_comida, fecha, id_usu),
