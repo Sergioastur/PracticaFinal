@@ -36,9 +36,11 @@ $stmt->execute();
 // Verificar si se encontró un usuario
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
-    echo "<p>Bienvenido $usuario</p> <br> <a href='../index.html'>Volver al inicio</a>";
+    header("Location: ../pages/control.html", true, 301); // Redirección permanente
+    exit();
+
 } else {
-    echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formLogin.php'>Volver a intentarlo</a></body>
+    echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
 </html>";
 }
 ?>

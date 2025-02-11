@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    
 </head>
 <body>
     
@@ -48,7 +49,7 @@ if ($password != $password2) {
     if ($stmt->execute()) {
         echo "<p>Usuario creado correctamente</p> <br> <a href='../index.html'>Volver al inicio</a>";
     } else {
-        echo "<p>Error al crear el usuario el usuario ya existe</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formCrearUsu.php'>Volver a intentarlo</a>";
+        echo "<p>Error al crear el usuario el usuario ya existe</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formCrearUsu.html'>Volver a intentarlo</a>";
     }
 }
 
