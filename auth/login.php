@@ -36,7 +36,7 @@ $stmt->execute();
 // Verificar si se encontró un usuario
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
-    header("Location: ../pages/control.html", true, 301); // Redirección permanente
+    header("Location: ../pages/control.php", true, 301); // Redirección permanente
     exit();
 
 } else {
