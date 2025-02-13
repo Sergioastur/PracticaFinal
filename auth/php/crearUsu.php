@@ -12,7 +12,7 @@
 
 <?php
 // Datos de conexión
-$servidor = "localhost:3307";
+$servidor = "localhost:3306";
 $usuario = "root";
 $password = "";
 $db = "diabetes";
@@ -35,11 +35,22 @@ $usuario = $_POST["usuario"];
 $password = $_POST["password"];
 $password2 = $_POST["password2"];
 
+// Comprobar que no hay usuarios repetidos
+
+$check_stmt = $conn->prepare("SELECT usuario FROM usuario WHERE usuario = ?");
+$check_stmt->bind_param("s", $usuario);
+$check_stmt->execute();
+$check_stmt->store_result();
+
 // Verificar que las contraseñas coinciden
 if ($password != $password2) {
     echo "<p>Las contraseñas no coinciden</p>";
     
-} else {
+} else if ($check_stmt->num_rows > 0) {
+    echo "<p>El usuario ya existe. Intenta con otro nombre de usuario.</p>";
+    echo "<br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
+}
+ else {
 
     // Crear la consulta
     $stmt = $conn->prepare("INSERT INTO usuario (nombre, apellidos, fecha_nacimiento, usuario, contra) VALUES (?, ?, ?, ?, ?)");
@@ -47,9 +58,9 @@ if ($password != $password2) {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo "<p>Usuario creado correctamente</p> <br> <a href='../index.html'>Volver al inicio</a>";
+        echo "<p>Usuario creado correctamente</p> <br> <a href='../../index.html'>Volver al inicio</a>";
     } else {
-        echo "<p>Error al crear el usuario el usuario ya existe</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formCrearUsu.html'>Volver a intentarlo</a>";
+        echo "<p>Error al crear el usuario</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
     }
 }
 

@@ -11,10 +11,10 @@
 <body>
     <div class="container">
         <h1>Control de glucosa</h1>
-        <form action="control.php" method="post">
+        <form action="../php/control.php" method="post">
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" name="fecha" id="fecha" class="form-control" required>
+                <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" disabled>
             </div>
             <div class="mb-3">
                 <label for="deporte" class="form-label">Nivel de actividad:</label>

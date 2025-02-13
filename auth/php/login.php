@@ -8,7 +8,7 @@
 <body>
 <?php
 // Datos de conexión
-$servidor = "localhost:3307";
+$servidor = "localhost:3306";
 $usuario = "root";
 $password = "";
 $db = "diabetes";
@@ -36,7 +36,9 @@ $stmt->execute();
 // Verificar si se encontró un usuario
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
-    header("Location: ../pages/control.php", true, 301); // Redirección permanente
+    session_start();
+    $_SESSION["usuario"] = $usuario;
+    header("Location: ../../pages/ui/crearControl.php", true, 301); // Redirección permanente
     exit();
 
 } else {
