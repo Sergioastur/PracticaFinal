@@ -37,7 +37,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     session_start();
-    $_SESSION["usuario"] = $usuario;
+    
+    // Cambiar el usuario a id
+    $row = $result->fetch_assoc();
+    $_SESSION["usuario"] = $row["id"];
     header("Location: ../../pages/ui/crearControl.php", true, 301); // Redirección permanente
     exit();
 
@@ -46,4 +49,3 @@ if ($result->num_rows > 0) {
 </html>";
 }
 ?>
-
