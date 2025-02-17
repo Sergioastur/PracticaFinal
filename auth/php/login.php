@@ -8,7 +8,7 @@
 <body>
 <?php
 // Datos de conexión
-$servidor = "localhost:3306";
+$servidor = "localhost:3307";
 $usuario = "root";
 $password = "";
 $db = "diabetes";
@@ -27,13 +27,33 @@ $usuario = $_POST["usuario"];
 $password = $_POST["password"];
 
 // Crear la consulta
-$stmt = $conn->prepare("SELECT * FROM usuario WHERE usuario = ? AND contra = ?");
-$stmt->bind_param("ss", $usuario, $password);
+$stmt = $conn->prepare("SELECT id_usu, contra FROM usuario WHERE usuario = ?");
+$stmt->bind_param("s", $usuario);
 
 // Ejecutar la consulta
 $stmt->execute();
 
+// Vincular las variables de resultado
+$stmt->bind_result($id, $hash);
+
+
 // Verificar si se encontró un usuario
+if ($stmt->fetch() && password_verify($password, $hash)) {
+    session_start();
+    
+    // Cambiar el usuario a id
+    $_SESSION["usuario"] = $id;
+    header("Location: ../../pages/ui/crearControl.php", true, 301); // Redirección permanente
+    exit();
+
+} else {
+    echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
+</html>";
+}
+
+
+
+/* // Verificar si se encontró un usuario
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     session_start();
@@ -47,5 +67,5 @@ if ($result->num_rows > 0) {
 } else {
     echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
 </html>";
-}
+} */
 ?>
