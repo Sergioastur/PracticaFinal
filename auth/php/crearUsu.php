@@ -12,7 +12,7 @@
 
 <?php
 // Datos de conexión
-$servidor = "localhost:3306";
+$servidor = "localhost:3307";
 $usuario = "root";
 $password = "";
 $db = "diabetes";
@@ -51,6 +51,7 @@ if ($password != $password2) {
     echo "<br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
 }
  else {
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Crear la consulta
     $stmt = $conn->prepare("INSERT INTO usuario (nombre, apellidos, fecha_nacimiento, usuario, contra) VALUES (?, ?, ?, ?, ?)");
