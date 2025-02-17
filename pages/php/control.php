@@ -1,10 +1,6 @@
 <?php
 session_start();
-// Datos de conexión
-$servidor = "localhost:3306";
-$usuario = "root";
-$password = "";
-$db = "diabetes";
+require_once "../../connection/conexion.php";
 
 // Crear la conexión
 $conn = new mysqli($servidor, $usuario, $password, $db);
@@ -21,6 +17,21 @@ $deporte = $_POST["deporte"];
 $lenta = $_POST["lenta"];
 $usuario = $_SESSION["usuario"];
 
+// Verificar si el usuario ya tiene un control en esa fecha
+$sql = "SELECT * FROM control_glucosa WHERE fecha = ? AND id_usu = ?";
+$stmt_check = $conn->prepare($sql);
+$stmt_check->bind_param("si", $fecha, $usuario);
+$stmt_check->execute();
+$result = $stmt_check->get_result();
+
+if ($result->num_rows > 0) {
+    echo '<script>
+        alert("Ya existe un control en la misma fecha");
+        window.location.href = "../ui/selectControl.php";
+    </script>';
+    exit();
+}
+
 
 // Crear la consulta
 $stmt = $conn->prepare("INSERT INTO control_glucosa (fecha, deporte, lenta, id_usu) VALUES (?, ?, ?, ?)");
@@ -28,7 +39,8 @@ $stmt->bind_param("sssi", $fecha, $deporte, $lenta, $usuario);
 
 // Ejecutar la consulta
 if ($stmt->execute()) {
-    echo "<p>Control creado correctamente</p> <br> <a href='../../index.html'>Volver al inicio</a>";
+    header("Location: selectControl.php", true, 301); // Redirección permanente
+    exit();
 } else {
     echo "<p>Error al crear el control</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/crearControl.php'>Volver a intentarlo</a>";
 }

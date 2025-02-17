@@ -11,11 +11,7 @@
 
 
 <?php
-// Datos de conexión
-$servidor = "localhost:3307";
-$usuario = "root";
-$password = "";
-$db = "diabetes";
+require_once "../../connection/conexion.php";
 
 // Crear la conexión
 $conn = new mysqli($servidor, $usuario, $password, $db);
@@ -59,7 +55,8 @@ if ($password != $password2) {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo "<p>Usuario creado correctamente</p> <br> <a href='../../index.html'>Volver al inicio</a>";
+        header("Location: ../../index.html", true, 301); // Redirección permanente
+        exit();
     } else {
         echo "<p>Error al crear el usuario</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
     }

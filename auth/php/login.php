@@ -7,11 +7,7 @@
 </head>
 <body>
 <?php
-// Datos de conexión
-$servidor = "localhost:3307";
-$usuario = "root";
-$password = "";
-$db = "diabetes";
+require_once "../../connection/conexion.php";
 
 // Crear la conexión
 $conn = new mysqli($servidor, $usuario, $password, $db);
@@ -40,10 +36,10 @@ $stmt->bind_result($id, $hash);
 // Verificar si se encontró un usuario
 if ($stmt->fetch() && password_verify($password, $hash)) {
     session_start();
-    
+    $_SESSION["name"] = $usuario;
     // Cambiar el usuario a id
     $_SESSION["usuario"] = $id;
-    header("Location: ../../pages/ui/crearControl.php", true, 301); // Redirección permanente
+    header("Location: ../../pages/ui/index.php", true, 301); // Redirección permanente
     exit();
 
 } else {
