@@ -14,15 +14,16 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-//TODO: usuario convertir a id
+
 // Recibir los datos
 $fecha = $_POST["fecha"];
 $deporte = $_POST["deporte"];
 $lenta = $_POST["lenta"];
 $usuario = $_SESSION["usuario"];
 
+
 // Crear la consulta
-$stmt = $conn->prepare("INSERT INTO control (fecha, deporte, lenta, id_usuario) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO control_glucosa (fecha, deporte, lenta, id_usu) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("sssi", $fecha, $deporte, $lenta, $usuario);
 
 // Ejecutar la consulta

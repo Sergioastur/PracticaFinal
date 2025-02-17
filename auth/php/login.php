@@ -40,12 +40,12 @@ if ($result->num_rows > 0) {
     
     // Cambiar el usuario a id
     $row = $result->fetch_assoc();
-    $_SESSION["usuario"] = $row["id"];
-    header("Location: ../../pages/ui/crearControl.php", true, 301); // Redirección permanente
+    $_SESSION["usuario"] = $row["id_usu"];
+    header("Location: ../../pages/ui/index.html", true, 301); // Redirección permanente
     exit();
 
 } else {
-    echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
+    echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
 </html>";
 }
 ?>

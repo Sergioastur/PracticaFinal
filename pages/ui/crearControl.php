@@ -14,7 +14,7 @@
         <form action="../php/control.php" method="post">
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" disabled>
+                <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
             </div>
             <div class="mb-3">
                 <label for="deporte" class="form-label">Nivel de actividad:</label>
