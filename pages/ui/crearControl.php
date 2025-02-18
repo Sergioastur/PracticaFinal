@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<?php include '../interface/sidebar.php'; ?>
     <div class="container">
         <h1>Control de glucosa</h1>
         <form action="../php/control.php" method="post">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['pagina'] = "inicio";
+$_SESSION['pagina'] = "tabla";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,11 +25,12 @@ $_SESSION['pagina'] = "inicio";
     <!-- TODO: Icono perfil, links, iconos -->
     <div class="d-flex">
         <?php include '../interface/sidebar.php'; ?>
+        <!-- Fin Sidebar -->
         <div class="flex-grow-1 p-3">
-            <h1>Contenido Principal</h1>
-            <p>Aquí va el contenido de la página.</p>
+            <h1>Tabla</h1>
+            
         </div>
     </div>
-    <!-- Fin Sidebar -->
+    
 </body>
 </html>
