@@ -18,6 +18,7 @@ if ($conn->connect_error) {
 }
 
 // Obtener el ID del usuario autenticado
+
 $id_usu = $_SESSION['usuario'];
 ?>
 
@@ -63,23 +64,16 @@ $id_usu = $_SESSION['usuario'];
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
-                    <th></th>
-                    <th colspan="9">DESAYUNO</th>
-                    <th colspan="9">COMIDA</th>
-                    <th colspan="9">MERIENDA</th>
-                    <th colspan="9">CENA</th>
-                    <th colspan="9">APERITIVO</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <?php for ($i = 0; $i < 5; $i++) echo "<th colspan='4'></th><th colspan='2'>HIPO</th><th colspan='3'>HIPER</th>"; ?>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>Dia</th>
-                    <?php for ($i = 0; $i < 5; $i++) echo "<th>GL/1H</th><th>RAC.</th><th>INSU.</th><th>GL/2H</th><th>GLU.</th><th>HORA</th><th>GLU.</th><th>HORA.</th><th>CORR.</th>"; ?>
-                    <th>LENTA</th>
+                    <th>Día</th>
+                    <?php
+                    $comidas = ['desayuno', 'comida', 'merienda', 'cena', 'aperitivo'];
+                    foreach ($comidas as $comida) {
+                        echo "<th>GL/1H ($comida)</th><th>RAC.</th><th>INSU.</th><th>GL/2H</th>";
+                        echo "<th>HIPO GLU.</th><th>HORA</th>";
+                        echo "<th>HIPER GLU.</th><th>HORA</th><th>CORR.</th>";
+                    }
+                    echo "<th>LENTA</th>";
+                    ?>
                 </tr>
             </thead>
             <tbody>
@@ -93,26 +87,40 @@ $id_usu = $_SESSION['usuario'];
                         $fecha = "$year-$month-$day";
                         echo "<tr><td>$day</td>";
                         
-                        foreach (['desayuno', 'comida', 'merienda', 'cena', 'aperitivo'] as $comida) {
+                        foreach ($comidas as $comida) {
                             $query = "SELECT * FROM COMIDA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result = $conn->query($query);
                             $data = $result->fetch_assoc();
-                            echo "<td>" . ($data['gl_1h'] ?? '') . "</td><td>" . ($data['raciones'] ?? '') . "</td><td>" . ($data['insulina'] ?? '') . "</td><td>" . ($data['gl_2h'] ?? '') . "</td>";
+                            
+                            $gl_1h = $data['gl_1h'] ?? '';
+                            $raciones = $data['raciones'] ?? '';
+                            $insulina = $data['insulina'] ?? '';
+                            $gl_2h = $data['gl_2h'] ?? '';
                             
                             $query_hipo = "SELECT * FROM HIPOGLUCEMIA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result_hipo = $conn->query($query_hipo);
-                            $data_hipo = $result_hipo->fetch_assoc();
-                            echo "<td>" . ($data_hipo['glucosa'] ?? '') . "</td><td>" . ($data_hipo['hora'] ?? '') . "</td>";
+                            $hipo = $result_hipo->fetch_assoc();
+                            
+                            $hipo_glu = $hipo['glucosa'] ?? '';
+                            $hipo_hora = $hipo['hora'] ?? '';
                             
                             $query_hiper = "SELECT * FROM HIPERGLUCEMIA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result_hiper = $conn->query($query_hiper);
-                            $data_hiper = $result_hiper->fetch_assoc();
-                            echo "<td>" . ($data_hiper['glucosa'] ?? '') . "</td><td>" . ($data_hiper['hora'] ?? '') . "</td><td>" . ($data_hiper['correccion'] ?? '') . "</td>";
+                            $hiper = $result_hiper->fetch_assoc();
+                            
+                            $hiper_glu = $hiper['glucosa'] ?? '';
+                            $hiper_hora = $hiper['hora'] ?? '';
+                            $hiper_corr = $hiper['correccion'] ?? '';
+                            
+                            echo "<td>$gl_1h</td><td>$raciones</td><td>$insulina</td><td>$gl_2h</td>";
+                            echo "<td>$hipo_glu</td><td>$hipo_hora</td>";
+                            echo "<td>$hiper_glu</td><td>$hiper_hora</td><td>$hiper_corr</td>";
                         }
                         
                         $query_lenta = "SELECT lenta FROM CONTROL_GLUCOSA WHERE id_usu = $id_usu AND fecha = '$fecha'";
                         $result_lenta = $conn->query($query_lenta);
-                        echo "<td>" . ($result_lenta->fetch_assoc()['lenta'] ?? '') . "</td></tr>";
+                        $lenta = $result_lenta->fetch_assoc()['lenta'] ?? '';
+                        echo "<td>$lenta</td></tr>";
                     }
                 }
                 ?>

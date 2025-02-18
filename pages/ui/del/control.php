@@ -15,8 +15,8 @@ if ($conn->connect_error) {
 $fecha = $_POST["fecha"];
 
 // Crear la consulta
-$stmt = $conn->prepare("DELETE FROM control_glucosa WHERE fecha = ?");
-$stmt->bind_param("s", $fecha);
+$stmt = $conn->prepare("DELETE FROM control_glucosa WHERE fecha = ? AND id_usu = ?");
+$stmt->bind_param("si", $fecha, $_SESSION['usuario']);
 
 // Ejecutar la consulta
 if ($stmt->execute()) {

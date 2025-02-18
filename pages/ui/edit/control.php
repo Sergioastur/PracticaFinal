@@ -24,6 +24,13 @@ $result = $stmt->get_result();
 // Obtener los resultados
 $row = $result->fetch_assoc();
 
+// Verificar si existe el control
+if ($result->num_rows == 0) {
+    header("Location: ../../ui/selectControl.php", true, 301); // Redirección permanente
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,7 +55,7 @@ $row = $result->fetch_assoc();
     <!-- Sidebar -->
     <!-- TODO: Icono perfil, links, iconos -->
     <div class="d-flex">
-    <?php include '../interface/sidebar.php'; ?>
+    <?php include '../../interface/sidebar.php'; ?>
         <!-- Fin Sidebar -->
     <div class="flex-grow-1 p-3">
         <h1>Editar de control de glucosa</h1>

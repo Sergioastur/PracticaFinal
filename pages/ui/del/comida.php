@@ -10,6 +10,19 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../../../index.php");
+    exit;
+}
+
+// Verificar si existe la comida
+$stmt = $conn->prepare("SELECT * FROM comida WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");
+$stmt->bind_param("ssi", $_POST["fecha"], $_POST["tipo_comida"], $_SESSION["usuario"]);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
 
 // Recibir los datos
 $fecha = $_POST["fecha"];

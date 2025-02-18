@@ -10,3 +10,6 @@ Hiperglucemia correciones de unidades de insulina
 Lenta una vez al dia unidades de glucosa
 Usuario de base de datospara el cliente
 AwardSpace
+
+
+$tipos_comida = ['desayuno', 'comida', 'cena', 'aperitivo']; // Ejemplo de tipos de comida
