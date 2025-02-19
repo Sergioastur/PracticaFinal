@@ -19,6 +19,16 @@ if ($conn->connect_error) {
 
 // Obtener el ID del usuario autenticado
 $id_usu = $_SESSION['usuario'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $month = $_POST['month'];
+    $year = $_POST['year'];
+    $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+} else {
+    $month = date('m');
+    $year = date('Y');
+    $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,29 +46,45 @@ $id_usu = $_SESSION['usuario'];
     <div class="flex-grow-1 p-3">
         <h1>Tabla</h1>
         <form method="post" class="mb-4">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <label for="month" class="form-label">Mes:</label>
-                    <select class="form-select" id="month" name="month">
-                        <?php
-                        $months = [1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-                                   5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-                                   9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'];
-                        foreach ($months as $key => $value) {
-                            echo "<option value='$key'>$value</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <label for="year" class="form-label">Año:</label>
-                    <input type="number" class="form-control" id="year" name="year" min="2023" max="2025" value="2025">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mt-4">Ver Reporte</button>
-                </div>
-            </div>
-        </form>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <label for="month" class="form-label">Mes:</label>
+            <select class="form-select" id="month" name="month">
+                <?php
+                $months = [
+                    1 => 'Enero',
+                    2 => 'Febrero',
+                    3 => 'Marzo',
+                    4 => 'Abril',
+                    5 => 'Mayo',
+                    6 => 'Junio',
+                    7 => 'Julio',
+                    8 => 'Agosto',
+                    9 => 'Septiembre',
+                    10 => 'Octubre',
+                    11 => 'Noviembre',
+                    12 => 'Diciembre'
+                ];
+                foreach ($months as $key => $value) {
+                    if ($month == $key) {
+                        echo "<option value='$key' selected>$value</option>";
+                    } else {
+                        echo "<option value='$key'>$value</option>";
+                    }
+                    
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="year" class="form-label">Año:</label>
+            <input type="number" class="form-control" id="year" name="year" min="2023" max="2025" value="<?php echo $year; ?>">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mt-4">Ver Grafica</button>
+        </div>
+    </div>
+</form>
 
         <table class="table table-bordered">
             <thead class="table-light">
@@ -84,10 +110,10 @@ $id_usu = $_SESSION['usuario'];
             </thead>
             <tbody>
                 <?php
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                /* if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $month = $_POST['month'];
                     $year = $_POST['year'];
-                    $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+                    $days = cal_days_in_month(CAL_GREGORIAN, $month, $year); */
                     
                     for ($day = 1; $day <= $days; $day++) {
                         $fecha = "$year-$month-$day";
@@ -114,7 +140,7 @@ $id_usu = $_SESSION['usuario'];
                         $result_lenta = $conn->query($query_lenta);
                         echo "<td>" . ($result_lenta->fetch_assoc()['lenta'] ?? '') . "</td></tr>";
                     }
-                }
+                /* } */
                 ?>
             </tbody>
         </table>
