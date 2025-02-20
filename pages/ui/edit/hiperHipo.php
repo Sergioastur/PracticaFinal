@@ -17,14 +17,14 @@
     $usuario = $_SESSION["usuario"];
 
 
-    // Buscar en la tabla hiperglucemia
+    // Buscar en la tipo hiperglucemia
     $sql_hiper = "SELECT * FROM hiperglucemia WHERE tipo_comida = ? AND fecha = ?";
     $stmt_hiper = $conn->prepare($sql_hiper);
     $stmt_hiper->bind_param("ss", $tipo_comida, $fecha);
     $stmt_hiper->execute();
     $result_hiper = $stmt_hiper->get_result();
 
-    // Buscar en la tabla hipoglucemia
+    // Buscar en la tipo hipoglucemia
     $sql_hipo = "SELECT * FROM hipoglucemia WHERE tipo_comida = ? AND fecha = ?";
     $stmt_hipo = $conn->prepare($sql_hipo);
     $stmt_hipo->bind_param("ss", $tipo_comida, $fecha);
@@ -33,10 +33,10 @@
 
     if ($result_hiper->num_rows > 0) {
         $registro = $result_hiper->fetch_assoc();
-        $tabla = 'hiperglucemia';
+        $tipo = 'hiperglucemia';
     } elseif ($result_hipo->num_rows > 0) {
         $registro = $result_hipo->fetch_assoc();
-        $tabla = 'hipoglucemia';
+        $tipo = 'hipoglucemia';
     } else {
         header("Location: ../selectHiperHipo.html", true, 301); // Redirección permanente
         exit();
@@ -46,7 +46,7 @@
     //guardar los datos en variables
     $glucosa = $registro["glucosa"];
     $hora = $registro["hora"];
-    if ($tabla == 'hiperglucemia') {
+    if ($tipo == 'hiperglucemia') {
         $correcion = $registro["correccion"];
     } 
     else {
@@ -55,7 +55,7 @@
     $fecha = $registro["fecha"];
     $tipo_comida = $registro["tipo_comida"];
     $usuario = $registro["id_usu"];
-
+    
 
 ?>
 
@@ -64,7 +64,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar <?php echo $tabla;?></title>
+    <title>Editar <?php echo $tipo;?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -81,12 +81,12 @@
      <!-- Sidebar -->
     <!-- TODO: Icono perfil, links, iconos -->
     <div class="d-flex">
-    <?php include '../interface/sidebar.php'; ?>
+    <?php include '../../interface/sidebar.php'; ?>
         
         <!-- Fin Sidebar -->
         <div class="flex-grow-1 p-3">
-            <h1>Editar <?php echo $tabla;?></h1>
-            <form action="../../php/edit/update_<?php echo $tabla;?>.php" method="POST">
+            <h1>Editar <?php echo $tipo;?></h1>
+            <form action="../../php/edit/update_<?php echo $tipo;?>.php" method="POST">
                 <div class="mb-3">
                     <label for="glucosa" class="form-label">Glucosa:</label>
                     <input type="number" name="glucosa" id="glucosa" class="form-control" value="<?php echo $glucosa;?>" required>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="correccion" class="form-label">Correción:</label>
-                    <input type="number" name="correccion" id="correccion" class="form-control" value="<?php echo $correcion;?>" <?php if($tabla == 'hiperglucemia'){echo "required";}else{echo "disabled";}?>>
+                    <input type="number" name="correccion" id="correccion" class="form-control" value="<?php echo $correcion;?>" <?php if($tipo == 'hiperglucemia'){echo "required";}else{echo "disabled";}?>>
                 </div>
                 <div class="mb-3">
                     <label for="tipo_comida" class="form-label">Tipo de comida:</label>

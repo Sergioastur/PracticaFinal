@@ -67,7 +67,7 @@ if ($row["total"] == 0) {
 // Ejecutar la consulta
 
 if ($stmt->execute()) {
-    header("Location: ../ui/selectHiperHipo.html", true, 301); // Redirección permanente
+    header("Location: ../ui/selectHiperHipo.php", true, 301); // Redirección permanente
     exit();
 } else {
     echo "<p>Error al crear la hiper</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/crearHiper.php'>Volver a intentarlo</a>";

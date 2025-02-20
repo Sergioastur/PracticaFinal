@@ -20,7 +20,7 @@ $stmt->bind_param("si", $fecha, $_SESSION['usuario']);
 
 // Ejecutar la consulta
 if ($stmt->execute()) {
-    header("Location: ../../ui/selectControl.php", true, 301); // Redirección permanente
+    header("Location: ../selectControl.php", true, 301); // Redirección permanente
     exit();
 } else {
     echo "<p>Error al eliminar el control</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/deleteControl.php'>Volver a intentarlo</a>";

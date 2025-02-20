@@ -19,7 +19,7 @@ $usuario = $_SESSION["usuario"];
  // Buscar en la tabla hiperglucemia
  $sql_hiper = "SELECT * FROM hiperglucemia WHERE tipo_comida = ? AND fecha = ? AND id_usu = ?";
  $stmt_hiper = $conn->prepare($sql_hiper);
- $stmt_hiper->bind_param("ssI", $tipo_comida, $fecha, $usuario);
+ $stmt_hiper->bind_param("ssi", $tipo_comida, $fecha, $usuario);
  $stmt_hiper->execute();
  $result_hiper = $stmt_hiper->get_result();
 

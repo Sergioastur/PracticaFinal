@@ -3,5 +3,5 @@
 $servidor = "localhost:3306";
 $usuario = "root";
 $password = "";
-$db = "diabetes";
+$db = "diabetes_bd";
 ?>
