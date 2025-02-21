@@ -22,6 +22,14 @@ $stmt->bind_param("ssi", $_POST["fecha"], $_POST["tipo_comida"], $_SESSION["usua
 $stmt->execute();
 $result = $stmt->get_result();
 
+if (!($resultr->num_rows > 0)) {
+    echo '<script>
+        alert("No existe una comida en la fecha elegida");
+        window.location.href = "../selectHiperHipo.php";
+    </script>';
+    exit();
+}
+
 
 
 // Recibir los datos

@@ -26,7 +26,10 @@ $row = $result->fetch_assoc();
 
 // Verificar si existe el control
 if ($result->num_rows == 0) {
-    header("Location: ../../ui/selectControl.php", true, 301); // Redirección permanente
+    echo '<script>
+        alert("No existe un control en la fecha elegida");
+        window.location.href = "../selectControl.php";
+    </script>';
     exit();
 }
 

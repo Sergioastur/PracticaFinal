@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $year = date('Y');
     $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Tabla</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .sidebar {
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
 <div class="d-flex">

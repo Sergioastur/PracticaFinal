@@ -43,7 +43,7 @@
                     <label for="fecha" class="form-label">Fecha:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="submit" class="btn btn-danger">Borrar</button>
             </form>
         </div>
 </body>

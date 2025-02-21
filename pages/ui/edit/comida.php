@@ -15,6 +15,20 @@ if ($conn->connect_error) {
 $fecha = $_POST["fecha"];
 $tipo_comida = $_POST["tipo_comida"];
 
+// Verificar si existe la comida
+$stmt = $conn->prepare("SELECT * FROM comida WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");
+$stmt->bind_param("ssi", $_POST["fecha"], $_POST["tipo_comida"], $_SESSION["usuario"]);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if (!($result->num_rows > 0)) {
+    echo '<script>
+        alert("No existe una comida en la fecha elegida");
+        window.location.href = "../selectComida.php";
+    </script>';
+    exit();
+}
+
 
 
 // Crear la consulta
@@ -53,7 +67,7 @@ $row = $result->fetch_assoc();
     <!-- Sidebar -->
     <!-- TODO: Icono perfil, links, iconos -->
     <div class="d-flex">
-    <?php include '../interface/sidebar.php'; ?>
+    <?php include '../../interface/sidebar.php'; ?>
         <!-- Fin Sidebar -->
     <div class="flex-grow-1 p-3">
         <h1>Editar Comida</h1>

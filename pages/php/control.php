@@ -39,7 +39,7 @@ $stmt->bind_param("sssi", $fecha, $deporte, $lenta, $usuario);
 
 // Ejecutar la consulta
 if ($stmt->execute()) {
-    header("Location: selectControl.php", true, 301); // Redirección permanente
+    header("Location: ../ui/selectControl.php", true, 301); // Redirección permanente
     exit();
 } else {
     echo "<p>Error al crear el control</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/crearControl.php'>Volver a intentarlo</a>";

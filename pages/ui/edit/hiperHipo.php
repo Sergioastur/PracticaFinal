@@ -38,7 +38,7 @@
         $registro = $result_hipo->fetch_assoc();
         $tipo = 'hipoglucemia';
     } else {
-        header("Location: ../selectHiperHipo.html", true, 301); // Redirección permanente
+        echo "<script>alert('No existe una hiper/hipoglucemia en la fecha elegida'); window.location.href = '../selectHiperHipo.php';</script> ";
         exit();
     }
 
