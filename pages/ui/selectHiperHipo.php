@@ -30,8 +30,9 @@ $_SESSION['pagina'] = "hiperHipo";
         <div class="flex-grow-1 p-3">
             <div class="p-5 mb-4 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-5">
-                  <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-                  <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                  <h1 class="display-5 fw-bold">Crea una Hiperglucemia o una Hipoglucemia</h1>
+                  <p class="col-md-8 fs-4">Registra un episodio de hiperglucemia (nivel alto de azúcar en la sangre) o hipoglucemia (nivel bajo de azúcar en la sangre). 
+                  Esto es útil para el seguimiento médico y el control de la diabetes, permitiendo llevar un historial de eventos y ajustar el tratamiento según sea necesario.</p>
                   <a href="crearHiperHipo.php?tipo=hiper" class="btn btn-primary btn-lg" type="button">Hiperglucemia</a>
                   <a href="crearHiperHipo.php?tipo=hipo" class="btn btn-primary btn-lg" type="button">Hipoglucemia</a>
                 </div>
@@ -39,15 +40,17 @@ $_SESSION['pagina'] = "hiperHipo";
               <div class="row align-items-md-stretch">
                 <div class="col-md-6">
                   <div class="h-100 p-5 text-bg-dark rounded-3">
-                    <h2>Change the background</h2>
-                    <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+                    <h2>Editar una Hiperglucemia o una Hipoglucemia</h2>
+                    <p> Si necesitas modificar un registro existente, puedes editar los detalles de un episodio de hiperglucemia o hipoglucemia. 
+                    Esto te permitirá corregir información o agregar notas adicionales para mejorar el control de tu salud.</p>
                     <a href="editarHiperHipo.php" class="btn btn-outline-light" type="button">Editar</a>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                    <h2>Add borders</h2>
-                    <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+                    <h2>Borrar una Hiperglucemia o una Hipoglucemia</h2>
+                    <p>Elimina un registro de hiperglucemia o hipoglucemia si ya no es necesario o si fue ingresado por error. 
+                    Mantén tu historial limpio y preciso para un mejor control de tu estado de salud.</p>
                     <a href="borrarHiperHipo.php" class="btn btn-outline-secondary" type="button">Borrar</a>
                   </div>
                 </div>

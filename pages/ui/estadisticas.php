@@ -46,18 +46,12 @@ $_SESSION['pagina'] = "estadisticas";
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="raciones-comida-tab" data-bs-toggle="tab" data-bs-target="#raciones-comida-tab-pane" type="button" role="tab" aria-controls="raciones-comida-tab-pane" aria-selected="false">Raciones por comida</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
-                </li>
+                
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="casos-hiper-hipo-tab-pane" role="tabpanel" aria-labelledby="casos-hiper-hipo-tab" tabindex="0"> <?php include 'stats/hiperHipo.php'; ?></div>
                 <div class="tab-pane fade" id="raciones-comida-tab-pane" role="tabpanel" aria-labelledby="raciones-comida-tab" tabindex="0"><?php include 'stats/racionesComida.php'; ?></div>
-                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">c</div>
-                <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">d</div>
+                
             </div>
         </div>
     </div>
