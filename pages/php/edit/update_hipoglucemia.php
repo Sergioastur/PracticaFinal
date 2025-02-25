@@ -1,5 +1,6 @@
+<?php session_start(); ?>
 <?php
-    session_start();
+    
     require_once "../../../connection/conexion.php";
 
     // Crear la conexión

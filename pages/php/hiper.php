@@ -1,5 +1,6 @@
+<?php session_start(); ?>
 <?php
-session_start();
+
 require_once "../../connection/conexion.php";
 
 // Crear la conexión
@@ -24,6 +25,22 @@ $fecha_actual = date("Y-m-d");
 if ($fecha > $fecha_actual) {
     echo '<script>
         alert("La fecha no puede ser superior a la fecha actual");
+        window.location.href = "../ui/selectHiperHipo.php";
+    </script>';
+    exit();
+}
+
+
+// Verificar que exista una comida con la fecha y tipo de comida
+$stmt_check_comida = $conn->prepare("SELECT COUNT(*) as total FROM comida WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");
+$stmt_check_comida->bind_param("ssi", $fecha, $tipo_comida, $usuario);
+$stmt_check_comida->execute();
+$result_comida = $stmt_check_comida->get_result();
+$row_comida = $result_comida->fetch_assoc();
+
+if ($row_comida["total"] == 0) {
+    echo '<script>
+        alert("No existe una comida con esa fecha y tipo");
         window.location.href = "../ui/selectHiperHipo.php";
     </script>';
     exit();

@@ -69,8 +69,10 @@ if ($password != $password2) {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        header("Location: ../../index.html", true, 301); // Redirección permanente
-        exit();
+        echo "<script>
+            alert('Usuario creado correctamente');
+            window.location.href = '../../index.html';
+            </script>";
     } else {
         echo "<p>Error al crear el usuario</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
     }

@@ -1,17 +1,23 @@
 <?php 
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+
+
 // Si no hay una sesion iniciada, redirige al index
 if (!isset($_SESSION['name'])) {
     echo '<script type="text/javascript">
-        window.location.href = "../../index.html';
+        window.location.href = "../../index.html";
+    </script>';
 }
-$pagina = $_SESSION['pagina'];
+
+
+// Ver el nombre de la página actual
+$pagina = basename($_SERVER['PHP_SELF'], ".php");
+
+
+
 
 // Rutas de los archivos
-$rootPath = "/PracticaFinal/pages/ui/";
+$rootPath = "/pages/ui/";
 
 $inicio = $rootPath."index.php";
 $control = $rootPath."selectControl.php";
@@ -34,7 +40,7 @@ $profile = $rootPath."perfil.php";
 <link rel="stylesheet" href="<?php echo $css;?>">
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar position-fixed" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <a href="<?php echo $inicio;?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <!-- <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
          <img src="<?php echo $logo;?>" width="40" height="40" class="bi pe-none me-2">
         <span class="fs-4">Diabetes</span>
@@ -42,25 +48,25 @@ $profile = $rootPath."perfil.php";
     <hr>
     <ul class="nav nav-pills flex-column mb-auto ">
         <li class="nav-item">
-            <a href="<?php echo $inicio;?>" class="nav-link <?php if($pagina=='inicio'){echo 'active';}else{echo 'text-white';} ?>" aria-current="page">
+            <a href="<?php echo $inicio;?>" class="nav-link <?php if($pagina=='index'){echo 'active';}else{echo 'text-white';} ?>" aria-current="page">
             <i class="bi bi-house-door pe-none me-2"></i>
                 Inicio
             </a>
         </li>
         <li>
-            <a href="<?php echo $control;?>" class="nav-link <?php if($pagina=='control'){echo 'active';}else{echo 'text-white';} ?>">
+            <a href="<?php echo $control;?>" class="nav-link <?php if($pagina=='selectControl'){echo 'active';}else{echo 'text-white';} ?>">
             <i class="bi bi-card-list pe-none me-2"></i>
                 Control
             </a>
         </li>
         <li>
-            <a href="<?php echo $comida;?>" class="nav-link <?php if($pagina=='comida'){echo 'active';}else{echo 'text-white';} ?>">
+            <a href="<?php echo $comida;?>" class="nav-link <?php if($pagina=='selectComida'){echo 'active';}else{echo 'text-white';} ?>">
             <i class="fa-solid fa-utensils pe-none me-2"></i>
                 Comida
             </a>
         </li>
         <li>
-            <a href="<?php echo $hiperHipo;?>" class="nav-link <?php if($pagina=='hiperHipo'){echo 'active';}else{echo 'text-white';} ?>">
+            <a href="<?php echo $hiperHipo;?>" class="nav-link <?php if($pagina=='selectHiperHipo'){echo 'active';}else{echo 'text-white';} ?>">
             <i class="bi bi-arrow-down-up pe-none me-2"></i>
                 Hiper/Hipoglucemia
             </a>

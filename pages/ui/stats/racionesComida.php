@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 include(__DIR__ . '/../../../connection/conexion.php');
 $id_usu = $_SESSION["usuario"];
@@ -24,7 +25,7 @@ $sql = "SELECT
             c.tipo_comida,
             SUM(c.raciones) AS total_raciones
         FROM 
-            COMIDA c
+            comida c
         WHERE 
             c.id_usu = ? 
             AND MONTH(c.fecha) = ? 

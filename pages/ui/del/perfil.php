@@ -1,6 +1,7 @@
+<?php session_start(); ?>
 <?php
 require_once "../../../connection/conexion.php";
-session_start();
+
 
 // Crear la conexión
 $conn = new mysqli($servidor, $usuario, $password, $db);

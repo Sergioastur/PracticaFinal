@@ -130,23 +130,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<tr><td>$day</td>";
                         
                         foreach (['desayuno', 'comida', 'merienda', 'cena', 'aperitivo'] as $comida) {
-                            $query = "SELECT * FROM COMIDA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
+                            $query = "SELECT * FROM comida WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result = $conn->query($query);
                             $data = $result->fetch_assoc();
                             echo "<td>" . ($data['gl_1h'] ?? '') . "</td><td>" . ($data['raciones'] ?? '') . "</td><td>" . ($data['insulina'] ?? '') . "</td><td>" . ($data['gl_2h'] ?? '') . "</td>";
                             
-                            $query_hipo = "SELECT * FROM HIPOGLUCEMIA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
+                            $query_hipo = "SELECT * FROM hipoglucemia WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result_hipo = $conn->query($query_hipo);
                             $data_hipo = $result_hipo->fetch_assoc();
                             echo "<td>" . ($data_hipo['glucosa'] ?? '') . "</td><td>" . ($data_hipo['hora'] ?? '') . "</td>";
                             
-                            $query_hiper = "SELECT * FROM HIPERGLUCEMIA WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
+                            $query_hiper = "SELECT * FROM hiperglucemia WHERE id_usu = $id_usu AND fecha = '$fecha' AND tipo_comida = '$comida'";
                             $result_hiper = $conn->query($query_hiper);
                             $data_hiper = $result_hiper->fetch_assoc();
                             echo "<td>" . ($data_hiper['glucosa'] ?? '') . "</td><td>" . ($data_hiper['hora'] ?? '') . "</td><td>" . ($data_hiper['correccion'] ?? '') . "</td>";
                         }
                         
-                        $query_lenta = "SELECT lenta FROM CONTROL_GLUCOSA WHERE id_usu = $id_usu AND fecha = '$fecha'";
+                        $query_lenta = "SELECT lenta FROM control_glucosa WHERE id_usu = $id_usu AND fecha = '$fecha'";
                         $result_lenta = $conn->query($query_lenta);
                         echo "<td>" . ($result_lenta->fetch_assoc()['lenta'] ?? '') . "</td></tr>";
                     }

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
 require_once "../../../connection/conexion.php";
 // Recibir los datos
@@ -12,9 +13,9 @@ if ($conn->connect_error) {
 }
 
 // Crear la consulta
-$stmt = $conn->prepare("SELECT * FROM control_glucosa WHERE fecha = ?");
+$stmt = $conn->prepare("SELECT * FROM control_glucosa WHERE fecha = ? AND id_usu = ?");
+$stmt->bind_param("si", $fecha, $_SESSION["usuario"]);
 
-$stmt->bind_param("s", $fecha);
 
 
 // Ejecutar la consulta

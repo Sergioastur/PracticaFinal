@@ -1,5 +1,6 @@
+<?php session_start(); ?>
 <?php
-session_start();
+
 require_once "../../../connection/conexion.php";
 
 // Crear la conexión
@@ -32,8 +33,9 @@ if (!($result->num_rows > 0)) {
 
 
 // Crear la consulta
-$stmt = $conn->prepare("SELECT * FROM comida WHERE fecha = ? AND tipo_comida = ?");
-$stmt->bind_param("ss", $fecha, $tipo_comida);
+$stmt = $conn->prepare("SELECT * FROM comida WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");
+$stmt->bind_param("ssi", $fecha, $tipo_comida, $_SESSION["usuario"]);
+
 
 
 // Ejecutar la consulta

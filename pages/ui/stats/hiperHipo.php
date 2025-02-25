@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 include(__DIR__ . '/../../../connection/conexion.php');
 $id_usu= $_SESSION["usuario"];
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Numero de hiperglucemias
 $sql = "SELECT COUNT(*) AS total_hiperglucemias 
-FROM HIPERGLUCEMIA 
+FROM hiperglucemia 
 WHERE MONTH(fecha) = ? AND YEAR(fecha) = ? AND id_usu = ?";
 
 $stmt = $conn->prepare($sql);
@@ -36,7 +37,7 @@ $total_hiperglucemias = (int)$row['total_hiperglucemias'];
 
 // Numer de hipoglucemis
 $sql = "SELECT COUNT(*) AS total_hipoglucemias 
-        FROM HIPOGLUCEMIA 
+        FROM hipoglucemia 
         WHERE MONTH(fecha) = ? AND YEAR(fecha) = ? AND id_usu = ?";
 
 $stmt = $conn->prepare($sql);
