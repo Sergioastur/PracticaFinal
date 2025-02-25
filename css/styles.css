@@ -16,3 +16,7 @@ body {
     width: 1000px !important;  
     height: 800px !important; 
 }
+
+.formulario {
+    margin-top: 20px;
+}

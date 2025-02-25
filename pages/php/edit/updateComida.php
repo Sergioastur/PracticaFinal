@@ -20,6 +20,16 @@ $raciones = $_POST["raciones"];
 $insulina = $_POST["insulina"];
 $usuario = $_SESSION["usuario"];
 
+// Verificar que la fecha no sea superior a hoy
+$fecha_actual = date("Y-m-d");
+if ($fecha > $fecha_actual) {
+    echo '<script>
+        alert("La fecha no puede ser superior a la fecha actual");
+        window.location.href = "../../ui/selectComida.php";
+    </script>';
+    exit();
+}
+
 
 // Crear la consulta
 $stmt = $conn->prepare("UPDATE comida SET gl_1h = ?, gl_2h = ?, raciones = ?, insulina = ? WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");

@@ -38,13 +38,26 @@ $check_stmt->bind_param("s", $usuario);
 $check_stmt->execute();
 $check_stmt->store_result();
 
+//Verificar que la fecha no sea superior a hoy
+$fecha_actual = date("Y-m-d");
+if ($fecha_nacimiento > $fecha_actual) {
+    echo '<script>
+        alert("La fecha de nacimiento no puede ser superior a la fecha actual");
+        window.location.href = "../../index.html";
+    </script>';
+    exit();
+}
+
 // Verificar que las contraseñas coinciden
 if ($password != $password2) {
     echo "<p>Las contraseñas no coinciden</p>";
     
 } else if ($check_stmt->num_rows > 0) {
-    echo "<p>El usuario ya existe. Intenta con otro nombre de usuario.</p>";
-    echo "<br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/formCrearUsu.html'>Volver a intentarlo</a>";
+    echo '<script>
+        alert("El usuario ya existe");
+        window.location.href = "../../index.html";
+    </script>';
+    exit();
 }
  else {
     $password = password_hash($password, PASSWORD_DEFAULT);

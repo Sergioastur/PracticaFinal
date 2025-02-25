@@ -17,6 +17,16 @@ $deporte = $_POST["deporte"];
 $lenta = $_POST["lenta"];
 $usuario = $_SESSION["usuario"];
 
+// Verificar que la fecha no sea superior a hoy
+$fecha_actual = date("Y-m-d");
+if ($fecha > $fecha_actual) {
+    echo '<script>
+        alert("La fecha no puede ser superior a la fecha actual");
+        window.location.href = "../ui/selectControl.php";
+    </script>';
+    exit();
+}
+
 // Verificar si el usuario ya tiene un control en esa fecha
 $sql = "SELECT * FROM control_glucosa WHERE fecha = ? AND id_usu = ?";
 $stmt_check = $conn->prepare($sql);

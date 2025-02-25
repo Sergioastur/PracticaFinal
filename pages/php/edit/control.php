@@ -17,6 +17,16 @@ $deporte = $_POST["deporte"];
 $lenta = $_POST["lenta"];
 $usuario = $_SESSION["usuario"];
 
+// Verificar que la fecha no sea superior a hoy
+$fecha_actual = date("Y-m-d");
+if ($fecha > $fecha_actual) {
+    echo '<script>
+        alert("La fecha no puede ser superior a la fecha actual");
+        window.location.href = "../../ui/selectControl.php";
+    </script>';
+    exit();
+}
+
 
 // Actualizar la consulta
 $stmt = $conn->prepare("UPDATE control_glucosa SET deporte = ?, lenta = ? WHERE fecha = ? AND id_usu = ?");

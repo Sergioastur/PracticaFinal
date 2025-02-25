@@ -19,6 +19,16 @@ $tipo_comida = $_POST["tipo_comida"];
 $glucosa = $_POST["glucosa"];
 $usuario = $_SESSION["usuario"];
 
+// Verificar que la fecha no sea superior a hoy
+$fecha_actual = date("Y-m-d");
+if ($fecha > $fecha_actual) {
+    echo '<script>
+        alert("La fecha no puede ser superior a la fecha actual");
+        window.location.href = "../ui/selectHiperHipo.php";
+    </script>';
+    exit();
+}
+
 // Verificar si no existe una hiper en la misma fecha y tipo de comida
 $stmt_check_hiper = $conn->prepare("SELECT COUNT(*) as total FROM hiperglucemia WHERE fecha = ? AND tipo_comida = ?");
 $stmt_check_hiper->bind_param("ss", $fecha, $tipo_comida);
@@ -61,7 +71,7 @@ $row = $result->fetch_assoc();
 
 
 if ($row["total"] == 0) {
-    echo "<p>No se encontró la comida</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='../ui/crearHiper.php'>Volver a intentarlo</a>";
+    echo "<script>alert('No existe una comida con esa fecha y tipo'); window.location.href = '../ui/selectHiperHipo.php';</script> ";
     exit();
 } else {
 // Ejecutar la consulta

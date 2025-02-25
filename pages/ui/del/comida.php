@@ -25,7 +25,7 @@ $result = $stmt->get_result();
 if (!($resultr->num_rows > 0)) {
     echo '<script>
         alert("No existe una comida en la fecha elegida");
-        window.location.href = "../selectHiperHipo.php";
+        window.location.href = "../../ui/selectComida.php";
     </script>';
     exit();
 }

@@ -19,6 +19,16 @@
     $tipo_comida = $_POST["tipo_comida"];
     $usuario = $_SESSION["usuario"];
 
+    // Verificar que la fecha no sea superior a hoy
+    $fecha_actual = date("Y-m-d");
+    if ($fecha > $fecha_actual) {
+        echo '<script>
+            alert("La fecha no puede ser superior a la fecha actual");
+            window.location.href = "../../ui/selectHiperHipo.php";
+        </script>';
+        exit();
+    }
+
 
     // Crear la consulta
     $stmt = $conn->prepare("UPDATE hiperglucemia SET glucosa = ?, hora = ?, correccion = ? WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?");

@@ -20,6 +20,28 @@
     $insulina = $_POST["insulina"];
     $usuario = $_SESSION["usuario"];
 
+    // Verificar que la fecha no sea superior a hoy
+    $fecha_actual = date("Y-m-d");
+    if ($fecha > $fecha_actual) {
+        echo '<script>
+            alert("La fecha no puede ser superior a la fecha actual");
+            window.location.href = "../ui/selectComida.php";
+        </script>';
+        exit();
+    }
+
+    // Verificar que exista el control
+    $sql = "SELECT * FROM control_glucosa WHERE fecha = ? AND id_usu = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $fecha, $usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 0) {
+        echo "<script>alert('No existe un control de glucosa para esa fecha'); window.location.href = '../ui/selectComida.php';</script> ";
+        exit();
+    }
+
     // Verificar que no exista la comida
     $sql = "SELECT * FROM comida WHERE fecha = ? AND tipo_comida = ? AND id_usu = ?";
     $stmt = $conn->prepare($sql);
