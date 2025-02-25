@@ -22,10 +22,11 @@
     <div class="d-flex">
     <?php include '../interface/sidebar.php'; ?>
         <!-- Fin Sidebar -->
-        <div class="flex-grow-1 p-3">
-            <h1>Crear Comida</h1>
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+            
            
-            <form action="../php/comida.php" method="post">
+            <form action="../php/comida.php" method="post" class="p-4 border rounded shadow bg-white" style="width: 50%;">
+            <h1>Crear Comida</h1>
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
@@ -43,11 +44,11 @@
                 <div class="mb-3 row row-cols-2">
                     <div class="col">
                         <label for="gl_1h" class="form-label">Glucosa 1h antes:</label>
-                        <input type="number" name="gl_1h" id="gl_1h" class="form-control" required>
+                        <input type="number" name="gl_1h" id="gl_1h" class="form-control" min="80" max="130" required>
                     </div>
                     <div class="col">
                         <label for="gl_2h" class="form-label">Glucosa 1h después:</label>
-                        <input type="number" name="gl_2h" id="gl_2h" class="form-control" required>
+                        <input type="number" name="gl_2h" id="gl_2h" class="form-control" min="80" max="130" required>
                     </div>
                 </div>
                 <div class="mb-3">

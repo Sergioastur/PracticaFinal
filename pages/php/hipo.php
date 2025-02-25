@@ -57,6 +57,15 @@ if ($row_hipo["total"] > 0) {
     exit();
 }
 
+// Verificar que la hora sea válida
+if ($hora < "00:00" || $hora > "23:59") {
+    echo '<script>
+        alert("La hora no es válida");
+        window.location.href = "../ui/selectHiperHipo.php";
+    </script>';
+    exit();
+}
+
 
 // Crear la consulta
 $stmt = $conn->prepare("INSERT INTO hipoglucemia (fecha, hora, tipo_comida, glucosa, id_usu) VALUES (?, ?, ?, ?, ?)");

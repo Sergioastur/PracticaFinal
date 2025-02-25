@@ -22,10 +22,11 @@
     <div class="d-flex">
     <?php include '../interface/sidebar.php'; ?>
         <!-- Fin Sidebar -->
-        <div class="flex-grow-1 p-3">
-            <h1>Crear Comida</h1>
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+            
            
-            <form action="edit/comida.php" method="post">
+            <form action="edit/comida.php" method="post" class="p-4 border rounded shadow bg-white" style="width: 50%;">
+            <h1>Editar Comida</h1>
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>

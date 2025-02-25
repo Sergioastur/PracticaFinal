@@ -26,9 +26,10 @@
     <?php include '../interface/sidebar.php'; ?>
         
         <!-- Fin Sidebar -->
-        <div class="flex-grow-1 p-3">
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+            
+            <form action="del/hiperHipo.php" method="POST" class="p-4 border rounded shadow bg-white" style="width: 50%;">
             <h1>Borrar Hiper/Hipoglucemia</h1>
-            <form action="del/hiperHipo.php" method="POST">
                 <div class="mb-3">
                     <label for="tipo_comida" class="form-label">Tipo de comida:</label>
                     <select name="tipo_comida" id="tipo_comida" class="form-select" required>

@@ -9,15 +9,7 @@ $tipo = $_GET["tipo"];
     <title><?php echo $tipo;?>gluecemia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        .sidebar {
-            height: 100vh;
-        }
-    </style>
+    
 </head>
 <body>
      <!-- Sidebar -->
@@ -26,10 +18,11 @@ $tipo = $_GET["tipo"];
     <?php include '../interface/sidebar.php'; ?>
         
         <!-- Fin Sidebar -->
-        <div class="flex-grow-1 p-3">
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+            
+            <form action="../php/<?php echo $tipo;?>.php" method="POST" class="p-4 border rounded shadow bg-white" style="width: 50%;">
             <h1>Crear <?php echo $tipo;?>glucemia</h1>
-            <form action="../php/<?php echo $tipo;?>.php" method="POST">
-                <div class="mb-3">
+            <div class="mb-3">
                     <label for="glucosa" class="form-label">Glucosa:</label>
                     <input type="number" name="glucosa" id="glucosa" class="form-control" required>
                 </div>

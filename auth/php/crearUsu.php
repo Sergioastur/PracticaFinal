@@ -11,6 +11,7 @@
 
 
 <?php
+ob_start();
 require_once "../../connection/conexion.php";
 
 // Crear la conexión
@@ -75,7 +76,7 @@ if ($password != $password2) {
     }
 }
 
-
+ob_end_flush();
 ?>
 
 </body>

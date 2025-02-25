@@ -14,6 +14,19 @@ if ($conn->connect_error) {
 // Recibir los datos
 $fecha = $_POST["fecha"];
 
+// Verificar que existe el control
+$stmt = $conn->prepare("SELECT * FROM control_glucosa WHERE fecha = ? AND id_usu = ?");
+$stmt->bind_param("si", $fecha, $_SESSION['usuario']);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "<script>alert('No existe un control con esa fecha');
+    window.location.href='../selectControl.php';
+    </script>";
+    exit();
+}
+
 // Crear la consulta
 $stmt = $conn->prepare("DELETE FROM control_glucosa WHERE fecha = ? AND id_usu = ?");
 $stmt->bind_param("si", $fecha, $_SESSION['usuario']);

@@ -84,9 +84,10 @@
     <?php include '../../interface/sidebar.php'; ?>
         
         <!-- Fin Sidebar -->
-        <div class="flex-grow-1 p-3">
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+            
+            <form action="../../php/edit/update_<?php echo $tipo;?>.php" method="POST" class="p-4 border rounded shadow bg-white" style="width: 50%;">
             <h1>Editar <?php echo $tipo;?></h1>
-            <form action="../../php/edit/update_<?php echo $tipo;?>.php" method="POST">
                 <div class="mb-3">
                     <label for="glucosa" class="form-label">Glucosa:</label>
                     <input type="number" name="glucosa" id="glucosa" class="form-control" value="<?php echo $glucosa;?>" required>

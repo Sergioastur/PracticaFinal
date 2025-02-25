@@ -121,7 +121,7 @@ $values = json_encode(array_values($data));
         </div>
         <div class="col-auto">
             <label for="year" class="form-label">Año:</label>
-            <input type="number" class="form-control" id="year" name="year" min="2023" max="2025" value="<?php echo $year; ?>">
+            <input type="number" class="form-control" id="year" name="year" min="2023" max="<?php echo $year; ?>" value="<?php echo $year; ?>">
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mt-4">Ver Grafica</button>

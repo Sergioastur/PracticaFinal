@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +8,7 @@
 </head>
 <body>
 <?php
+
 require_once "../../connection/conexion.php";
 
 // Crear la conexión
@@ -35,11 +37,13 @@ $stmt->bind_result($id, $hash);
 
 // Verificar si se encontró un usuario
 if ($stmt->fetch() && password_verify($password, $hash)) {
-    session_start();
+    
     $_SESSION["name"] = $usuario;
     // Cambiar el usuario a id
     $_SESSION["usuario"] = $id;
-    header("Location: ../../pages/ui/index.php", true, 301); // Redirección permanente
+    echo '<script type="text/javascript">
+        window.location.href = "../../pages/ui/index.php";
+    </script>';
     exit();
 
 } else {
@@ -64,4 +68,5 @@ if ($result->num_rows > 0) {
     echo "<p>Usuario o contraseña incorrectos</p> <br> <a href='../../index.html'>Volver al inicio</a> <a href='formLogin.html'>Volver a intentarlo</a></body>
 </html>";
 } */
+
 ?>

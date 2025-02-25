@@ -1,10 +1,12 @@
 <?php 
+
 if (!isset($_SESSION)) {
     session_start();
 }
 // Si no hay una sesion iniciada, redirige al index
 if (!isset($_SESSION['name'])) {
-    header('Location: ../../index.html');
+    echo '<script type="text/javascript">
+        window.location.href = "../../index.html';
 }
 $pagina = $_SESSION['pagina'];
 
@@ -20,6 +22,9 @@ $estadisticas = $rootPath."estadisticas.php";
 $logo = $rootPath."../../img/diabetes.png";
 $usu = $rootPath."../../img/usu.png";
 $css = $rootPath."../../css/styles.css";
+$profile = $rootPath."perfil.php";
+
+
 ?>
 <!-- Links iconos -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -80,10 +85,11 @@ $css = $rootPath."../../css/styles.css";
             <strong><?php echo $_SESSION['name'] ?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Créditos</a></li>
+            <li><a class="dropdown-item" href="<?php echo $profile;?>">Perfil</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../../index.html">Sign out</a></li>
+            <li><a class="dropdown-item" href="../../index.html" onclick="sessionStorage.clear();">Cerrar sesión</a></li>
         </ul>
+        
     </div>
 </div>

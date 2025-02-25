@@ -23,9 +23,10 @@
     <div class="d-flex">
     <?php include '../interface/sidebar.php'; ?>
         <!-- Fin Sidebar -->
-    <div class="flex-grow-1 p-3">
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center formulario">
+        
+        <form action="del/control.php" method="post" class="p-4 border rounded shadow bg-white" style="width: 50%;">
         <h1>Borrar control de glucosa</h1>
-        <form action="del/control.php" method="post">
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha:</label>
                 <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>

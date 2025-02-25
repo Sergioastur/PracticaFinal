@@ -43,7 +43,6 @@ $stmt_check_hipo->execute();
 $result_hipo = $stmt_check_hipo->get_result();
 $row_hipo = $result_hipo->fetch_assoc();
 
-
 if ($row_hipo["total"] > 0) {
     echo '<script>
         alert("Ya existe una hipo en la misma fecha y tipo de comida");
@@ -58,6 +57,14 @@ if ($row_hipo["total"] > 0) {
     exit();
 }
 
+// Verificar que la hora sea válida
+if ($hora < "00:00" || $hora > "23:59") {
+    echo '<script>
+        alert("La hora no es válida");
+        window.location.href = "../ui/selectHiperHipo.php";
+    </script>';
+    exit();
+}
 
 // Crear la consulta
 $stmt = $conn->prepare("INSERT INTO hiperglucemia (fecha, hora, correccion, tipo_comida, glucosa, id_usu) VALUES (?, ?, ?, ?, ?, ?)");

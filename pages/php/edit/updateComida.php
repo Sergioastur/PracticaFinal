@@ -20,6 +20,15 @@ $raciones = $_POST["raciones"];
 $insulina = $_POST["insulina"];
 $usuario = $_SESSION["usuario"];
 
+//Verificar que gl_1h y gl_2h estén entre 80 y 130
+if ($gl_1h < 80 || $gl_1h > 130 || $gl_2h < 80 || $gl_2h > 130) {
+    echo '<script>
+        alert("La glucosa 1h antes y 1h después deben estar entre 80 y 130");
+        window.location.href = "../../ui/selectComida.php";
+    </script>';
+    exit();
+}
+
 // Verificar que la fecha no sea superior a hoy
 $fecha_actual = date("Y-m-d");
 if ($fecha > $fecha_actual) {
