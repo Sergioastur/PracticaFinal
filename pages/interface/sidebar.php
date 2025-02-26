@@ -91,7 +91,7 @@ $profile = $rootPath."perfil.php";
             <strong><?php echo $_SESSION['name'] ?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Créditos</a></li>
+            <li><a class="dropdown-item" onclick="alert('Hecho por Sergio Saavedra')">Créditos</a></li>
             <li><a class="dropdown-item" href="<?php echo $profile;?>">Perfil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="../../index.html" onclick="sessionStorage.clear();">Cerrar sesión</a></li>
