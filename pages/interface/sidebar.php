@@ -17,7 +17,7 @@ $pagina = basename($_SERVER['PHP_SELF'], ".php");
 
 
 // Rutas de los archivos
-$rootPath = "/pages/ui/";
+$rootPath = "/PracticaFinal/pages/ui/";
 
 $inicio = $rootPath."index.php";
 $control = $rootPath."selectControl.php";
