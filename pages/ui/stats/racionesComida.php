@@ -1,5 +1,8 @@
-<?php session_start(); ?>
+
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 include(__DIR__ . '/../../../connection/conexion.php');
 $id_usu = $_SESSION["usuario"];
 
