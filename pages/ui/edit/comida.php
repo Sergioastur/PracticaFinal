@@ -92,11 +92,11 @@ $row = $result->fetch_assoc();
                 </div>
                 <div class="mb-3">
                     <label for="raciones" class="form-label">Raciones:</label>
-                    <input type="number" name="raciones" id="raciones" class="form-control" value="<?php echo $row['raciones']?>" required>
+                    <input type="number" name="raciones" id="raciones" class="form-control" value="<?php echo $row['raciones']?>"  min="0" max="50" required>
                 </div>
                 <div class="mb-3">
                     <label for="insulina" class="form-label">Insulina:</label>
-                    <input type="number" name="insulina" id="insulina" class="form-control" value="<?php echo $row['insulina']?>" required>
+                    <input type="number" name="insulina" id="insulina" class="form-control" value="<?php echo $row['insulina']?>"  min="0" max="100" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Editar comida</button>
         </form>

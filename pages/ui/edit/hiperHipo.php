@@ -91,7 +91,7 @@
             <h1>Editar <?php echo $tipo;?></h1>
                 <div class="mb-3">
                     <label for="glucosa" class="form-label">Glucosa:</label>
-                    <input type="number" name="glucosa" id="glucosa" class="form-control" value="<?php echo $glucosa;?>" required>
+                    <input type="number" name="glucosa" id="glucosa" class="form-control" value="<?php echo $glucosa;?>" min="0" max="100" required>
                 </div>
                 <div class="mb-3">
                     <label for="hora" class="form-label">Hora:</label>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="correccion" class="form-label">Correción:</label>
-                    <input type="number" name="correccion" id="correccion" class="form-control" value="<?php echo $correcion;?>" <?php if($tipo == 'hiperglucemia'){echo "required";}else{echo "disabled";}?>>
+                    <input type="number" name="correccion" id="correccion" min="0" max="100" class="form-control" value="<?php echo $correcion;?>" <?php if($tipo == 'hiperglucemia'){echo "required";}else{echo "disabled";}?>>
                 </div>
                 <div class="mb-3">
                     <label for="tipo_comida" class="form-label">Tipo de comida:</label>

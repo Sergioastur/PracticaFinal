@@ -48,11 +48,11 @@ $pagina = $_SESSION['pagina'];
                 </div>
                 <div class="mb-3">
                     <label for="raciones" class="form-label">Raciones:</label>
-                    <input type="number" name="raciones" id="raciones" class="form-control" required>
+                    <input type="number" name="raciones" id="raciones" class="form-control" min="0" max="50" required>
                 </div>
                 <div class="mb-3">
                     <label for="insulina" class="form-label">Insulina:</label>
-                    <input type="number" name="insulina" id="insulina" class="form-control" required>
+                    <input type="number" name="insulina" id="insulina" class="form-control" min="0" max="100" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Crear comida</button>
             </form>

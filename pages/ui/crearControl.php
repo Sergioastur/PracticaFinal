@@ -35,7 +35,7 @@
             </div>
             <div class="mb-3">
                 <label for="lenta" class="form-label">Insulina lenta:</label>
-                <input type="number" name="lenta" id="lenta" class="form-control" required>
+                <input type="number" name="lenta" id="lenta" class="form-control" min="0" max="100" required>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

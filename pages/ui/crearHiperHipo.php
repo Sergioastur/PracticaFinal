@@ -24,7 +24,7 @@ $tipo = $_GET["tipo"];
             <h1>Crear <?php echo $tipo;?>glucemia</h1>
             <div class="mb-3">
                     <label for="glucosa" class="form-label">Glucosa:</label>
-                    <input type="number" name="glucosa" id="glucosa" class="form-control" required>
+                    <input type="number" name="glucosa" id="glucosa" class="form-control" min="0" max="100" required>
                 </div>
                 <div class="mb-3">
                     <label for="hora" class="form-label">Hora:</label>
@@ -32,7 +32,7 @@ $tipo = $_GET["tipo"];
                 </div>
                 <div class="mb-3">
                     <label for="correcion" class="form-label">Correción:</label>
-                    <input type="number" name="correcion" id="correcion" class="form-control" <?php if($tipo == "hiper"){echo "required";}else{echo "disabled";}?>>
+                    <input type="number" name="correcion" id="correcion" min="0" max="100" class="form-control" <?php if($tipo == "hiper"){echo "required";}else{echo "disabled";}?>>
                 </div>
                 <div class="mb-3">
                     <label for="tipo_comida" class="form-label">Tipo de comida:</label>

@@ -23,7 +23,7 @@ $fecha_actual = date("Y-m-d");
 if ($fecha_nacimiento > $fecha_actual) {
     echo '<script>
         alert("La fecha de nacimiento no puede ser superior a la fecha actual");
-        window.location.href = "../../ui/editarPerfil.php";
+        window.location.href = "../../ui/perfil.php";
     </script>';
     exit();
 }
