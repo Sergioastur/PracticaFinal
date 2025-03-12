@@ -20,7 +20,7 @@
         <h1>Control de glucosa</h1>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
+                <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
             </div>
             <div class="mb-3">
                 <label for="deporte" class="form-label">Nivel de actividad:</label>
